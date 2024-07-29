@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FITNESS HUB</title>
+    <!-- Favicon for the tab icon -->
+    <link rel="icon" type="image/jpeg" href="./assets/features-first-icon (1).png" sizes="100x100">
+    
+    <!-- Preconnect to external resources for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Importing the Jost font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- Including jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <style type="text/css">
+        /* Basic reset and styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: orangered; /* Default text color */
+            font-family: "Jost", sans-serif; /* Font family */
+        }
+
+        /* Styling for the body */
+        body {
+            margin-top: 25px;
+            background: #080808; /* Dark background color */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Full viewport height */
+            width: 100%; /* Full viewport width */
+        }
+
+        /* Styling for the main section container */
+        section {
+            max-width: 80%;
+            max-height: 90vh;
+            width: 600px;
+            background: rgb(14, 13, 13); /* Dark background color */
+            padding: 40px; /* Padding around the content */
+            overflow-y: auto; /* Scrollable if content overflows */
+            border-top: 10px solid orangered; /* Top border with color */
+        }
+
+        /* Flexbox container styling */
+        .flex {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Input field styling */
+        .flex input {
+            border: none;
+            outline: none;
+            padding: 0px 20px;
+            height: 50px;
+            width: 100%;
+            border: 1px solid #060606; /* Border color */
+        }
+
+        /* Margin utility classes */
+        .m10 {
+            margin-top: 10px;
+        }
+
+        .m20 {
+            margin-top: 20px;
+        }
+
+        /* Button styling */
+        button {
+            width: 150px;
+            border-radius: 15%; /* Rounded corners */
+            outline: none;
+            cursor: pointer;
+            height: 50px;
+            background: #07ea3c; /* Green background color */
+            color: #080808; /* Text color */
+            padding: 0px 20px; /* Padding inside the button */
+            margin-left: 300px; /* Margin to the left */
+        }
+
+        /* Input focus styling */
+        input:focus {
+            border: 5px solid #2cf40e; /* Green border on focus */
+        }
+
+        /* Button hover styling */
+        button:hover {
+            background: #0870d0; /* Dark blue background on hover */
+        }
+
+        /* QR code container styling */
+        .get_qr {
+            height: 200px;
+            width: 200px;
+            border: 1px solid #999; /* Light border color */
+            background: #efefef; /* Light background color */
+        }
+
+        /* QR code image styling */
+        .qr_code {
+            width: 100%;
+            height: 100%;
+            display: none; /* Hidden by default */
+        }
+
+        /* Paragraph styling */
+        p {
+            color: #7a7a7a; /* Grey text color */
+            font-size: 25px;
+            line-height: 24px;
+        }
+
+        /* Image styling */
+        .im {
+            max-width: 100%;
+            width: 300px; /* Fixed width for images */
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Event handler for generating QR code
+            $(".generate_qr").click(function () {
+                $(".form").hide(); // Hide the form
+                $(".qr_code").show(); // Show the QR code container
+                var num = $(".number").val(); // Get the value from the number input
+                var link = "upi://pay?pa=divyanshuthakare@ybl%26am=%26tn=" + num;
+                // Uncomment the line below when QR code API URL is defined
+                // var upi = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" + link;
+                console.log(upi); // Log the QR code URL
+                $(".get_qr").attr("src", upi); // Set QR code image source
+            });
+
+            // Event handler for submitting the form
+            $(".download_now").click(function () {
+                var name = $(".name").val();
+                var num = $(".number").val();
+                var email = $(".email").val();
+                var id = $(".id").val();
+                if (num != "" && name != "" && email != "" && id != "") {
+                    // Process the form submission (e.g., send data to server)
+                } else {
+                    alert("We have just received your payment!"); // Show alert if any field is empty
+                }
+            });
+        });
+    </script>
+</head>
+
+<body
+    style="background-image: url(./assets/pexels-karolina-grabowska-5239806.jpg); background-repeat: no-repeat;background-size: cover;">
+    <!-- Main content section -->
+    <section>
+        <h1 style="color: white;">FITNESS HUB</h1>
+        <!-- Form container -->
+        <div class="form">
+            <!-- Full Name input -->
+            <div class="flex m20">
+                <label>Full Name*</label>
+                <input type="text" style="color: black;" name="name" placeholder="Full Name" class="m10 name">
+            </div>
+            <!-- Whatsapp Number input -->
+            <div class="flex m20">
+                <label>Whatsapp Number*</label>
+                <input type="text" style="color: black;" name="phone" placeholder="Number" class="m10 number">
+            </div>
+            <!-- Email input -->
+            <div class="flex m20">
+                <label>Email*</label>
+                <input type="email" style="color: black;" name="email" placeholder="Email" class="m10 email">
+            </div>
+            <!-- Button to generate QR code -->
+            <div class="flex m20">
+                <button class="generate_qr">NEXT</button>
+            </div>
+        </div>
+        <!-- QR Code container -->
+        <div class="qr_code m20">
+            <p>Scan the QR Code with any UPI App and pay the amount.</p> <br>
+            <!-- Placeholder QR code image -->
+            <img src="./assets/ImportedPhoto_1721989693224.jpg" alt="QR Code" width="200px" style="margin-left: 150px;">
+            <!-- UTR/REFERENCE/TRANSACTION ID input -->
+            <div class="flex m20">
+                <label>UTR/REFERENCE/TRANSACTION ID**</label>
+                <input type="number" name="email" placeholder="UTR/REFERENCE/TRANSACTION ID**" class="m10 id">
+            </div>
+            <!-- Button to submit the form -->
+            <button class="download_now m20">SUBMIT</button>
+        </div>
+    </section>
+</body>
+
+</html>
